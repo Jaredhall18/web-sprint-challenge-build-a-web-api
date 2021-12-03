@@ -9,12 +9,11 @@ const {
 
 const Projects = require('./projects-model') 
 
-
 //`[GET] /api/projects`
 router.get('/', (req, res, next) => {
     Projects.get()
-        .then(test => {
-            res.status(200).json(test)
+        .then(projects => {
+            res.status(200).json(projects)
         })
         .catch(err => {
             next(err)
@@ -60,8 +59,15 @@ router.delete('/:id', checkId, (req, res, next) => {
 })
 
 //[GET] /api/projects/:id/actions
-
-
+router.get('/:id/actions', checkId, (req, res, next) => {
+    Projects.getProjectActions(req.params.id)
+        .then(actions => {
+            res.status(200).json(actions)
+        })
+        .catch(err => {
+            next(err)
+        })
+})
 
 router.use(errorHandling)
 module.exports = router
