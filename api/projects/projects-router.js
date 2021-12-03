@@ -37,5 +37,16 @@ router.post('/', validateBody, (req, res, next) => {
         })
 })
 
+//`[PUT] /api/projects/:id`
+router.put('/:id', checkId, validateBody, (req, res, next) => {
+    Projects.update(req.params.id, req.body)
+        .then(project => {
+            res.json(project)
+        })
+        .catch(err => {
+            next(err)
+        })
+})
+
 router.use(errorHandling)
 module.exports = router

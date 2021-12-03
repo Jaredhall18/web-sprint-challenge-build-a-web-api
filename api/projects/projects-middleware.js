@@ -24,10 +24,11 @@ async function checkId(req, res, next) {
 
 
 function validateBody(req, res, next) {
-    if(!req.body.name || !req.body.description) {
-       next({ status: 400, message: "Body is missing data"}) 
+    const { name, description, completed } = req.body;
+    if(name && description && (completed === false || completed === true)) {
+       next() 
     } else {
-        next();
+        next({ status: 400, message: "Body is missing data"}) 
     }
 }
 
