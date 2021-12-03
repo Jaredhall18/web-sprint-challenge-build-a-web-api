@@ -15,6 +15,16 @@ async function checkId(req, res, next) {
     }
 }
 
+function validateBody(req, res, next) {
+    const { notes, description, project_id } = req.body;
+    if(notes && description && project_id) {
+       next() 
+    } else {
+        next({ status: 400, message: "Body is missing data"}) 
+    }
+}
+
 module.exports = {
     checkId,
+    validateBody,
 }
