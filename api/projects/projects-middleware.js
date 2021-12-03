@@ -22,7 +22,17 @@ async function checkId(req, res, next) {
     }
 }
 
+
+function validateBody(req, res, next) {
+    if(!req.body.name || !req.body.description) {
+       next({ status: 400, message: "Body is missing data"}) 
+    } else {
+        next();
+    }
+}
+
 module.exports = {
     errorHandling,
     checkId,
+    validateBody,
 }
