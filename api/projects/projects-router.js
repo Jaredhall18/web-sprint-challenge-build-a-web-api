@@ -48,5 +48,11 @@ router.put('/:id', checkId, validateBody, (req, res, next) => {
         })
 })
 
+//[DELETE] /api/projects/:id`
+// router.delete('/:id', checkId, (req, res, next) {
+//     Projects.remove(req.params.id)
+//         .then(record)
+// })
+
 router.use(errorHandling)
 module.exports = router
